@@ -1,0 +1,709 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite — Premium Hero Section</title>
+
+<style>
+/* ===== GLOBAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #080b12;
+    --gold: #e9c77b;
+    --gold-light: #fff0bd;
+    --text: #f5f5f7;
+    --muted: #a3a9b8;
+}
+
+body {
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(
+            ellipse at 78% 45%,
+            rgba(185, 142, 66, 0.15),
+            transparent 35%
+        ),
+        radial-gradient(
+            ellipse at 10% 10%,
+            rgba(65, 85, 140, 0.15),
+            transparent 35%
+        ),
+        #080b12;
+}
+
+/* Background decoration */
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.13;
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,0.07) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.07) 1px,
+            transparent 1px
+        );
+    background-size: 55px 55px;
+    mask-image: linear-gradient(to bottom, black, transparent 90%);
+}
+
+.orb {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    right: 8%;
+    top: 20%;
+    z-index: -1;
+    border-radius: 50%;
+    background: rgba(223, 179, 94, 0.08);
+    filter: blur(90px);
+    animation: float 7s ease-in-out infinite;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    width: min(1200px, 90%);
+    margin: auto;
+    min-height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 3px;
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    gap: 34px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: #b8bdc9;
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--gold-light);
+}
+
+.nav-cta {
+    color: var(--gold-light);
+    text-decoration: none;
+    border: 1px solid rgba(233,199,123,0.5);
+    border-radius: 5px;
+    padding: 12px 20px;
+    font-size: 12px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.nav-cta:hover {
+    background: var(--gold);
+    color: #101116;
+    box-shadow: 0 0 25px rgba(233,199,123,0.2);
+}
+
+/* ===== HERO CONTENT ===== */
+.hero-content {
+    width: min(1200px, 90%);
+    margin: auto;
+    padding: 85px 0 100px;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    align-items: center;
+    gap: 65px;
+}
+
+.hero-text {
+    animation: slideUp 0.9s ease both;
+}
+
+.eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    margin-bottom: 28px;
+    border: 1px solid rgba(233,199,123,0.24);
+    border-radius: 30px;
+    color: var(--gold-light);
+    background: rgba(233,199,123,0.06);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.status-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--gold);
+}
+
+h1 {
+    max-width: 680px;
+    font-size: clamp(44px, 6vw, 76px);
+    line-height: 1.06;
+    letter-spacing: -3px;
+    font-weight: 800;
+}
+
+h1 .highlight {
+    display: block;
+    padding-bottom: 8px;
+    background: linear-gradient(
+        100deg,
+        #fff1c5,
+        #d8aa56 50%,
+        #fff0bd
+    );
+    background-size: 200% auto;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    animation: shine 5s linear infinite;
+}
+
+.description {
+    max-width: 490px;
+    margin-top: 25px;
+    color: var(--muted);
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 35px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    min-height: 52px;
+    padding: 0 23px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    transition: 0.3s ease;
+}
+
+.btn-primary {
+    color: #11131a;
+    background: linear-gradient(135deg, #fff0bd, #d5a64f);
+    box-shadow: 0 8px 28px rgba(213,166,79,0.15);
+}
+
+.btn-primary:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(213,166,79,0.3);
+}
+
+.btn-secondary {
+    color: #f2f2f5;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.025);
+}
+
+.btn-secondary:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+    transform: translateY(-3px);
+}
+
+.arrow {
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover .arrow {
+    transform: translateX(5px);
+}
+
+/* ===== PREMIUM PREVIEW CARD ===== */
+.hero-visual {
+    position: relative;
+    animation: slideUp 1.1s ease both;
+    animation-delay: 0.15s;
+}
+
+.preview-card {
+    position: relative;
+    padding: 28px;
+    min-height: 390px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(233,199,123,0.2);
+    background: linear-gradient(
+        145deg,
+        rgba(255,255,255,0.09),
+        rgba(255,255,255,0.015)
+    );
+    box-shadow:
+        0 30px 100px rgba(0,0,0,0.35),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    transition: transform 0.25s ease;
+}
+
+.card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-label {
+    color: #b9bfcc;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
+
+.card-icon {
+    display: grid;
+    place-items: center;
+    width: 43px;
+    height: 43px;
+    border-radius: 12px;
+    color: var(--gold);
+    background: rgba(233,199,123,0.1);
+    border: 1px solid rgba(233,199,123,0.2);
+    font-size: 22px;
+}
+
+.card-heading {
+    margin-top: 42px;
+    font-size: 30px;
+    letter-spacing: -1px;
+}
+
+.card-copy {
+    margin-top: 12px;
+    max-width: 300px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.8;
+}
+
+.progress-label {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    font-size: 11px;
+    color: #c7cbd5;
+}
+
+.progress-track {
+    height: 5px;
+    margin-top: 12px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0;
+    border-radius: inherit;
+    background: linear-gradient(90deg, #c69a4c, #fff0bd);
+    transition: width 1.5s ease;
+}
+
+.card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 32px;
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.09);
+}
+
+.mini-stat strong {
+    display: block;
+    font-size: 23px;
+    color: var(--gold-light);
+}
+
+.mini-stat span {
+    display: block;
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--muted);
+}
+
+.floating-badge {
+    position: absolute;
+    right: -20px;
+    bottom: 35px;
+    padding: 15px 18px;
+    border: 1px solid rgba(233,199,123,0.3);
+    border-radius: 10px;
+    background: #151822;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    animation: float 4s ease-in-out infinite;
+}
+
+.floating-badge strong {
+    color: var(--gold-light);
+    font-size: 14px;
+}
+
+.floating-badge p {
+    margin-top: 5px;
+    color: var(--muted);
+    font-size: 10px;
+}
+
+/* ===== BOTTOM TRUST STRIP ===== */
+.trust-strip {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+    padding: 22px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.trust-strip p {
+    color: #82899a;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.trust-item {
+    color: #d0d3dc;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-12px); }
+}
+
+@keyframes shine {
+    to { background-position: 200% center; }
+}
+
+/* ===== MOBILE RESPONSIVE ===== */
+@media (max-width: 850px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 55px;
+        padding: 65px 0 75px;
+    }
+
+    .hero-text {
+        text-align: center;
+    }
+
+    .description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        width: min(100%, 480px);
+        margin: auto;
+    }
+
+    h1 {
+        letter-spacing: -2px;
+    }
+
+    .trust-strip {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        min-height: 75px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .nav-cta {
+        padding: 10px 12px;
+        font-size: 10px;
+    }
+
+    .hero-content {
+        padding-top: 55px;
+    }
+
+    h1 {
+        font-size: 43px;
+    }
+
+    .description {
+        font-size: 14px;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .preview-card {
+        padding: 22px;
+        min-height: 365px;
+    }
+
+    .floating-badge {
+        right: -5px;
+    }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="hero" id="home">
+    <div class="orb"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="#home" class="logo" style="color:inherit;text-decoration:none">
+            Home <span>Section Design</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+
+        <a href="#contact" class="nav-cta">LET'S TALK ↗</a>
+    </nav>
+
+    <!-- Main Hero -->
+    <main class="hero-content">
+
+        <div class="hero-text">
+            <div class="eyebrow">
+                <span class="status-dot"></span>
+                DESIGN WITHOUT LIMITS
+            </div>
+
+            <h1>
+                Elevate Your
+                <span class="highlight">Digital World.</span>
+            </h1>
+
+            <p class="description">
+                Transform your vision into an extraordinary digital
+                experience. Premium design, intelligent technology,
+                and meaningful results — all in one place.
+            </p>
+
+            <div class="hero-actions">
+                <a href="#features" class="btn btn-primary">
+                    Explore Experience
+                    <span class="arrow">→</span>
+                </a>
+
+                <a href="#about" class="btn btn-secondary">
+                    Discover More ↗
+                </a>
+            </div>
+        </div>
+
+        <!-- Premium Glass Card -->
+        <div class="hero-visual" id="features">
+            <div class="preview-card" id="tiltCard">
+
+                <div class="card-top">
+                    <span class="card-label">Performance Overview</span>
+                    <div class="card-icon">✦</div>
+                </div>
+
+                <h2 class="card-heading">Built for Excellence.</h2>
+
+                <p class="card-copy">
+                    Every detail crafted with precision.
+                    Every interaction designed to inspire.
+                </p>
+
+                <div class="progress-label">
+                    <span>Project Excellence</span>
+                    <span>96%</span>
+                </div>
+
+                <div class="progress-track">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+
+                <div class="card-footer">
+                    <div class="mini-stat">
+                        <strong>24/7</strong>
+                        <span>Always Ready</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>100%</strong>
+                        <span>Responsive</span>
+                    </div>
+
+                    <div class="mini-stat">
+                        <strong>∞</strong>
+                        <span>Possibilities</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="floating-badge">
+                <strong>✦ Premium Quality</strong>
+                <p>Crafted for the future</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Trust Strip -->
+    <div class="trust-strip" id="about">
+        <p>BUILT FOR MODERN BRANDS</p>
+        <span class="trust-item">DESIGN</span>
+        <span class="trust-item">INNOVATION</span>
+        <span class="trust-item">TECHNOLOGY</span>
+        <span class="trust-item">EXCELLENCE</span>
+    </div>
+</section>
+
+<script>
+// Animate the progress bar when the page loads
+window.addEventListener("load", () => {
+    const progress = document.getElementById("progressFill");
+
+    setTimeout(() => {
+        progress.style.width = "96%";
+    }, 400);
+});
+
+// Smooth scrolling for internal navigation links
+document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", event => {
+        const target = document.querySelector(link.getAttribute("href"));
+
+        if (target) {
+            event.preventDefault();
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+    });
+});
+
+// Subtle 3D hover effect on desktop
+const card = document.getElementById("tiltCard");
+
+if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+    card.addEventListener("mousemove", event => {
+        const rect = card.getBoundingClientRect();
+
+        const x = (event.clientX - rect.left) / rect.width;
+        const y = (event.clientY - rect.top) / rect.height;
+
+        const rotateY = (x - 0.5) * 5;
+        const rotateX = (0.5 - y) * 5;
+
+        card.style.transform =
+            `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    card.addEventListener("mouseleave", () => {
+        card.style.transform =
+            "perspective(1000px) rotateX(0deg) rotateY(0deg)";
+    });
+}
+</script>
+
+</body>
+</html>
